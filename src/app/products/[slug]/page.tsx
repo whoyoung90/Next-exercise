@@ -1,6 +1,6 @@
 type Props = {
   params: {
-    slug: string;
+    slug: string; // 키워드를 [slug]로 했으므로
   };
 };
 
@@ -9,12 +9,10 @@ export default function PantsPage({ params }: Props) {
   return <h1>{params.slug} 제품 설명 페이지</h1>;
 }
 
-// 동적 라우팅 페이지에서 특정 경로에 한해 미리 페이지를 만들어 두고 싶다면
+// 동적 라우팅 페이지에서 특정 경로에 한해 "미리 페이지를 만들어 두고 싶다면(SSG)"
 export function generateStaticParams() {
   const products = ["pants", "skirt"]; // 미리 만들어두고 싶은 경로
-  return products.map((product) => {
-    return {
-      slug: product,
-    };
-  });
+  return products.map((product) => ({
+    slug: product,
+  }));
 }
