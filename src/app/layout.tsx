@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
 import Link from "next/link";
 import "./globals.css";
 import styles from "./layout.module.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 // viewport는 기본 제공 (customizing 가능. 공식문서 참고)
 // 프로젝트 전체 경로 Metadata
@@ -24,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <header className={styles.header}>
           <h1>Demo Note</h1>
           <nav className={styles.nav}>
