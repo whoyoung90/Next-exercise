@@ -1,3 +1,8 @@
+import { getProduct, getProducts } from "@/API/products";
+
+/* ISR: 몇초 간격으로 SSG를 서버상에서 다시 만들어 둘건지 결정 */
+export const revalidate = 3;
+
 type Props = {
   params: {
     slug: string; // 키워드를 [slug]로 했으므로
@@ -12,14 +17,18 @@ export function generateMetadata({ params }: Props) {
 }
 
 // 동적 라우팅 (props에서 어떤 경로로 들어왔는지 알려준다!)
-export default function PantsPage({ params }: Props) {
-  return <h1>{params.slug} 제품 설명 페이지</h1>;
+export default async function ProductPage({ params: { slug } }: Props) {
+  const product = await getProduct(slug);
+  if (!product) {
+    // notfound
+  }
+  return <h1>{product?.name} 제품 설명 페이지</h1>;
 }
 
-// 동적 라우팅 페이지에서 특정 경로에 한해 "미리 페이지를 만들어 두고 싶다면(SSG)"
-export function generateStaticParams() {
-  const products = ["pants", "skirt"]; // 미리 만들어두고 싶은 경로
+// 동적 라우팅 페이지에서 "특정" 제품 페이지를 미리 만들어 두고 싶다면(SSG)
+export async function generateStaticParams() {
+  const products = await getProducts(); // "모든" 제품 페이지들을 미리 만들기 (SSG)
   return products.map((product) => ({
-    slug: product,
+    slug: product.id,
   }));
 }
