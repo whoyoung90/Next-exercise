@@ -3,7 +3,7 @@ import MeowArticle from "@/components/MeowArticle";
 import { getProducts } from "@/API/products";
 
 /* ISR: 몇초 간격으로 SSG를 서버상에서 다시 만들어 둘건지 결정 */
-export const revalidate = 3;
+// export const revalidate = 3;
 
 export default async function ProductsPage() {
   const products = await getProducts();
@@ -24,6 +24,7 @@ export default async function ProductsPage() {
           </li>
         ))}
       </ul>
+      {/* {factText} */}
       <MeowArticle />
     </>
   );

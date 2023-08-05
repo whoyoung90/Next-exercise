@@ -10,7 +10,7 @@ type Props = {
 // 클라이언트에서 실행
 // 콘솔 로그 => 브라우저에 O
 // 이벤트 처리, useEffect 모두 클라이언트에서 동작
-export default function SSGPage({ products }: Props) {
+export default function SSRPage({ products }: Props) {
   return (
     <>
       <h1>제품 소개 페이지!</h1>

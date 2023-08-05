@@ -1,7 +1,7 @@
 import { getProduct, getProducts } from "@/API/products";
 
 /* ISR: 몇초 간격으로 SSG를 서버상에서 다시 만들어 둘건지 결정 */
-export const revalidate = 3;
+// export const revalidate = 3;
 
 type Props = {
   params: {
