@@ -9,7 +9,7 @@ const nextConfig = {
       },
     ],
   },
-  // 리다이렉트 [ {리다이렉트1}, {리다이렉트2}, ...{리다이렉트N} ]
+  // redirect
   async redirects() {
     return [
       {
@@ -21,6 +21,19 @@ const nextConfig = {
         source: "/products/deleted_temp",
         destination: "/products",
         permanent: false, // 일시적인 리디렉션(302 Redirect): status 307
+      },
+    ];
+  },
+  // rewrite (보안상 민감한 key가 들어있는 URL 경우)
+  async rewrites() {
+    return [
+      {
+        source: "/wooyoung", // 대체된 URL
+        destination: "/about/me/wooyoung", // 기존 URL
+      },
+      {
+        source: "/items/:slug",
+        destination: "/products/:slug",
       },
     ];
   },

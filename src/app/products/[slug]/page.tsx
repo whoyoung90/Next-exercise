@@ -1,5 +1,7 @@
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import { getProduct, getProducts } from "@/API/products";
+import GoProductsButton from "@/components/GoProductsButton";
 
 type Props = {
   params: {
@@ -18,8 +20,10 @@ export function generateMetadata({ params }: Props) {
 export default async function ProductPage({ params: { slug } }: Props) {
   const product = await getProduct(slug);
   if (!product) {
-    // notfound
+    // 존재하지 않는 id 입력시 리다이렉트
+    redirect("/products");
   }
+
   return (
     <>
       <h1>{product?.name} 제품 설명 페이지</h1>
@@ -30,6 +34,7 @@ export default async function ProductPage({ params: { slug } }: Props) {
         height="300"
         priority
       />
+      <GoProductsButton />
     </>
   );
 }
@@ -41,3 +46,11 @@ export async function generateStaticParams() {
     slug: product.id,
   }));
 }
+// export function generateStaticParams() {
+//   const products = ["pants", "skirt"]; // 미리 만들어두고 싶은 경로 (SSG)
+//   return products.map((product) => {
+//     return {
+//       slug: product,
+//     };
+//   });
+// }
