@@ -14,16 +14,16 @@ export default async function ProductsPage() {
   // const res = await fetch("https://meowfacts.herokuapp.com", {
   //   next: { revalidate: 3 },
   // });
-  // const data = await res.json();
-  // const factText = data.data[0];
+  // const { data } = await res.json();
+  // const factText = data[0];
   return (
     <>
       <h1>제품 소개 페이지!</h1>
-      <Image src={clothImage} alt="Clothes" priority />
+      <Image src={clothImage} alt="clothes" priority />
       <ul>
-        {products.map((product, index) => (
+        {products.map(({ id, name }, index) => (
           <li key={index}>
-            <Link href={`/products/${product.id}`}>{product.name}</Link>
+            <Link href={`/products/${id}`}>{name}</Link>
           </li>
         ))}
       </ul>

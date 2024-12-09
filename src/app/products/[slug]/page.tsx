@@ -46,11 +46,3 @@ export async function generateStaticParams() {
     slug: product.id,
   }));
 }
-// export function generateStaticParams() {
-//   const products = ["pants", "skirt"]; // 미리 만들어두고 싶은 경로 (SSG)
-//   return products.map((product) => {
-//     return {
-//       slug: product,
-//     };
-//   });
-// }

@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export function middleware(request: NextRequest) {
   console.log("미들웨어가 실행되고 있음! 체크중!@@");
   if (request.nextUrl.pathname.startsWith("/products/1004")) {
-    console.log("미들웨어 - 경로를 리다이렉팅함!");
+    console.log("미들웨어 - 경로를 리다이렉팅함!", request.url);
     return NextResponse.redirect(new URL("/products", request.url));
   }
 }
@@ -14,5 +14,14 @@ export const config = {
   matcher: ["/products/:path+"],
 };
 
-// /products나 그 뒤에오는 모든 경로에서 수행: "/products/:path*"
-// /products/slug 다이나믹 경로에 해당하는 곳에서만 미들웨어 실행: "/products/:path+"
+/**
+ * @description *: zero or more
+ * path가 있거나 없거나
+ * /products 또는 그 뒤에오는 모든 경로 => "/products/:path*"
+ */
+
+/**
+ * @description +: one or more
+ * path가 하나 또는 많거나
+ * /products/slug 다이나믹 경로 => "/products/:path+"
+ */

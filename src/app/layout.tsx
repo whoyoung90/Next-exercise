@@ -11,7 +11,6 @@ const gothic = Nanum_Gothic({
   subsets: ["latin"],
 }); // variable font가 아니므로 weight 명시
 
-// viewport는 기본 제공 (customizing 가능. 공식문서 참고)
 // 프로젝트 전체 경로 Metadata
 export const metadata: Metadata = {
   title: "멋진 제품 사이트",
@@ -19,6 +18,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  // viewport는 Default Fields MetaData
 };
 
 export default function RootLayout({
